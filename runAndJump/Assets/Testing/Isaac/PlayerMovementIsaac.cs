@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovementIsaac : MonoBehaviour
 {
     private float horizontal;
     private float speed = 8f;
