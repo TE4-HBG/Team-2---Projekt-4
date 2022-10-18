@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 8f;
-    private float jumpingPower = 15f;
+    private float speed = 14f;
+    private float jumpingPower = 11f;
 
     [SerializeField] public Rigidbody rb;
     [SerializeField] public Transform groundCheck;
