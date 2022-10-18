@@ -6,7 +6,7 @@ public class Kayvan : MonoBehaviour
 {
     public GameObject player;
     private Vector3 playerPos;
-    private float kayvanSpeed = 2;
+    private float kayvanSpeed = 10f;
     
     void Update()
     {
