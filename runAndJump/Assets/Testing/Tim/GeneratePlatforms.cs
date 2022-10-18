@@ -12,7 +12,7 @@ public class GeneratePlatforms : MonoBehaviour
     public int randValueY;
     public int randStartValue;
     public int randEndValue;
-    public int minValueY; //Add this to the code when you get back
+    public int minPlatformSpawnY; //Add this to the code when you get back
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +21,7 @@ public class GeneratePlatforms : MonoBehaviour
         platformDist = 8;
         randStartValue = -3;
         randEndValue = randStartValue + 6;
+        minPlatformSpawnY = -3;
 
         for (int i = 0; i < 3; i++)
         {
@@ -37,7 +38,13 @@ public class GeneratePlatforms : MonoBehaviour
     {
         if (latestPlatform.transform.position.x - playerObject.transform.position.x < playerPlatformSpawnDist)
         {
-            randValueY = Random.Range(randStartValue, randEndValue);
+            do
+            {
+                randValueY = Random.Range(randStartValue, randEndValue);
+            } 
+            while (randValueY < minPlatformSpawnY);
+
+
             latestPlatform = Instantiate(platformPrefab, new Vector3(platformDist, randValueY), Quaternion.identity);
             platformDist += 8;
             randStartValue = (int)latestPlatform.transform.position.y -3;
