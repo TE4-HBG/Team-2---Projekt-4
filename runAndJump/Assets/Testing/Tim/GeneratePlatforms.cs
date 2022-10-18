@@ -12,7 +12,7 @@ public class GeneratePlatforms : MonoBehaviour
     public int randValueY;
     public int randStartValue;
     public int randEndValue;
-    public int minPlatformSpawnY; //Add this to the code when you get back
+    public int minPlatformSpawnY;
 
     // Start is called before the first frame update
     void Start()
