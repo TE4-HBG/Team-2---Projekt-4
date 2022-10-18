@@ -18,7 +18,7 @@ public class GeneratePlatforms : MonoBehaviour
     void Start()
     {
         playerPlatformSpawnDist = 20;
-        platformDist = 8;
+        platformDist = 10;
         randStartValue = -3;
         randEndValue = randStartValue + 6;
         minPlatformSpawnY = -3;
@@ -27,7 +27,7 @@ public class GeneratePlatforms : MonoBehaviour
         {
             randValueY = Random.Range(randStartValue, randEndValue);
             latestPlatform = Instantiate(platformPrefab, new Vector3(platformDist, randValueY), Quaternion.identity);
-            platformDist += 8;
+            platformDist += 12;
             randStartValue = (int)latestPlatform.transform.position.y;
             randEndValue = randStartValue + 6;
         }
@@ -46,7 +46,7 @@ public class GeneratePlatforms : MonoBehaviour
 
 
             latestPlatform = Instantiate(platformPrefab, new Vector3(platformDist, randValueY), Quaternion.identity);
-            platformDist += 8;
+            platformDist += 12;
             randStartValue = (int)latestPlatform.transform.position.y -3;
             randEndValue = randStartValue + 6;
         }
