@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        
+
         if (Input.GetKey(KeyCode.D))
         {
             rb.velocity = new Vector3(1 * speed, rb.velocity.y);
@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector3(0, jumpingPower);
         }
+
     }
 
     private bool IsGrounded()
