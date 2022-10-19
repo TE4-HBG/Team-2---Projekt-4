@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private float horizontal;
-    private float speed = 14f;
+    private float speed = 16f;
     private float jumpingPower = 10f;
     private float doubleJumpingPower = 8f;
 
@@ -22,14 +22,16 @@ public class PlayerMovement : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
 
         //Sprint
+        /*
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            speed = 20f;
+            speed = 16f;
         }
         else
         {
-            speed = 14f;
+            speed = 8f;
         }
+        */
         
         //Reactivate double jump
         if (IsGrounded() /*&& !Input.GetButtonDonw("Jump")*/)
