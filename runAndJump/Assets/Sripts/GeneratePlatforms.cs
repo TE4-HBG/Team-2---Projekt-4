@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class GeneratePlatforms : MonoBehaviour
 {
+    public ScoreCounter scoreCounter;
     public GameObject platformPrefab;
+    public GameObject platformTwoPrefab;
+    public GameObject platformThreePrefab;
+    public GameObject platformFourPrefab;
+    private GameObject platformToSpawn;
     public GameObject playerObject;
     private GameObject latestPlatform;
     public int playerPlatformSpawnDist;
@@ -13,10 +18,12 @@ public class GeneratePlatforms : MonoBehaviour
     public int randStartValue;
     public int randEndValue;
     public int minPlatformSpawnY;
+    
 
     // Start is called before the first frame update
     void Start()
     {
+        platformToSpawn = platformPrefab;
         playerPlatformSpawnDist = 20;
         platformDist = 10;
         randStartValue = -3;
@@ -26,7 +33,7 @@ public class GeneratePlatforms : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             randValueY = Random.Range(randStartValue, randEndValue);
-            latestPlatform = Instantiate(platformPrefab, new Vector3(platformDist, randValueY), Quaternion.identity);
+            latestPlatform = Instantiate(platformToSpawn, new Vector3(platformDist, randValueY), Quaternion.identity);
             platformDist += 12;
             randStartValue = (int)latestPlatform.transform.position.y;
             randEndValue = randStartValue + 6;
@@ -36,6 +43,19 @@ public class GeneratePlatforms : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (scoreCounter.score > 200 && scoreCounter.score < 401)
+        {
+            platformToSpawn = platformTwoPrefab;
+        }
+        else if (scoreCounter.score > 401 && scoreCounter.score < 802)
+        {
+            platformToSpawn = platformThreePrefab;
+        }
+        else if (scoreCounter.score > 802)
+        {
+            platformToSpawn = platformFourPrefab;
+        }
+
         if (latestPlatform.transform.position.x - playerObject.transform.position.x < playerPlatformSpawnDist)
         {
             do
@@ -45,7 +65,7 @@ public class GeneratePlatforms : MonoBehaviour
             while (randValueY < minPlatformSpawnY);
 
 
-            latestPlatform = Instantiate(platformPrefab, new Vector3(platformDist, randValueY), Quaternion.identity);
+            latestPlatform = Instantiate(platformToSpawn, new Vector3(platformDist, randValueY), Quaternion.identity);
             platformDist += 12;
             randStartValue = (int)latestPlatform.transform.position.y -3;
             randEndValue = randStartValue + 6;
