@@ -18,6 +18,7 @@ public class GeneratePlatforms : MonoBehaviour
     public int randStartValue;
     public int randEndValue;
     public int minPlatformSpawnY;
+    public int platformDistDiff;
     
 
     // Start is called before the first frame update
@@ -29,12 +30,13 @@ public class GeneratePlatforms : MonoBehaviour
         randStartValue = -3;
         randEndValue = randStartValue + 6;
         minPlatformSpawnY = -3;
+        platformDistDiff = 10;
 
         for (int i = 0; i < 3; i++)
         {
             randValueY = Random.Range(randStartValue, randEndValue);
             latestPlatform = Instantiate(platformToSpawn, new Vector3(platformDist, randValueY), Quaternion.identity);
-            platformDist += 12;
+            platformDist += platformDistDiff;
             randStartValue = (int)latestPlatform.transform.position.y;
             randEndValue = randStartValue + 6;
         }
@@ -49,10 +51,12 @@ public class GeneratePlatforms : MonoBehaviour
         }
         else if (scoreCounter.score > 401 && scoreCounter.score < 802)
         {
+            platformDistDiff = 13;
             platformToSpawn = platformThreePrefab;
         }
         else if (scoreCounter.score > 802)
         {
+            platformDistDiff = 16;
             platformToSpawn = platformFourPrefab;
         }
 
@@ -66,7 +70,7 @@ public class GeneratePlatforms : MonoBehaviour
 
 
             latestPlatform = Instantiate(platformToSpawn, new Vector3(platformDist, randValueY), Quaternion.identity);
-            platformDist += 12;
+            platformDist += platformDistDiff;
             randStartValue = (int)latestPlatform.transform.position.y -3;
             randEndValue = randStartValue + 6;
         }
