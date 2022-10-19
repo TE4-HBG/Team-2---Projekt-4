@@ -8,7 +8,7 @@ public class DeathFloor : MonoBehaviour
     public Transform target;
     private Vector3 playerPos;
 
-    private float speed = 20f;
+    private float speed = 100f;
 
     void Update()
     {

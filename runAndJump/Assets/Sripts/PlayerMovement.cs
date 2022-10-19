@@ -1,11 +1,16 @@
+using Palmmedia.ReportGenerator.Core.CodeAnalysis;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private float horizontal;
     private float speed = 14f;
-    private float jumpingPower = 11f;
+    private float jumpingPower = 10f;
+    private float doubleJumpingPower = 8f;
+
+    private bool doubleJump;
 
     [SerializeField] public Rigidbody rb;
     [SerializeField] public Transform groundCheck;
@@ -13,34 +18,53 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        //Obtains the value of either -1, 0 or 1
+        horizontal = Input.GetAxisRaw("Horizontal");
 
-        if (Input.GetKey(KeyCode.D))
+        //Sprint
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            rb.velocity = new Vector3(1 * speed, rb.velocity.y);
+            speed = 20f;
         }
-        else if (Input.GetKeyUp(KeyCode.D))
+        else
         {
-            rb.velocity = new Vector3(0, rb.velocity.y);
+            speed = 14f;
         }
-
-        if (Input.GetKey(KeyCode.A))
+        
+        //Reactivate double jump
+        if (IsGrounded() /*&& !Input.GetButtonDonw("Jump")*/)
         {
-            rb.velocity = new Vector3(-1 * speed, rb.velocity.y);
-        }
-        else if (Input.GetKeyUp(KeyCode.A))
-        {
-            rb.velocity = new Vector3(0, rb.velocity.y);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
-        {
-            rb.velocity = new Vector3(0, jumpingPower);
+            doubleJump = true;
         }
 
+        if (Input.GetButtonDown("Jump"))
+        {
+            //The player is grounded or doubleJump is true
+            if (IsGrounded() || doubleJump)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, doubleJump ? doubleJumpingPower : jumpingPower);
+
+                doubleJump = !doubleJump;
+            }     
+        }
+
+        //Allows the player to jump higher
+        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y * 0.5f);
+        }
+
+    }
+
+    private void FixedUpdate()
+    {
+        //Our movement, horizontal represents direction with -1, 0, 1. Translated means a idle and d
+        rb.velocity = new Vector3(horizontal * speed, rb.velocity.y);
     }
 
     private bool IsGrounded()
     {
         return Physics.CheckSphere(groundCheck.position, 0.2f, groundLayer);
+        //Checks if the player has touched the ground
     }
 }
