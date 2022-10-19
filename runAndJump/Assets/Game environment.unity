@@ -972,7 +972,7 @@ GameObject:
   - component: {fileID: 945254543}
   - component: {fileID: 945254542}
   m_Layer: 0
-  m_Name: Platformspawn kub (1)
+  m_Name: Platformspawn kub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -992,9 +992,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreCounter: {fileID: 789128670}
   platformPrefab: {fileID: 7285101660226760978, guid: 06c3b9eff96075f4186fd30edcd029f0, type: 3}
-  platformTwoPrefab: {fileID: 0}
-  platformThreePrefab: {fileID: 0}
-  platformFourPrefab: {fileID: 0}
+  platformTwoPrefab: {fileID: 1991269669345320430, guid: 702b74433763fc447b74dd371dfdff01, type: 3}
+  platformThreePrefab: {fileID: 3476363864201159133, guid: 21ee1841219313846b1822eba4db7d8e, type: 3}
+  platformFourPrefab: {fileID: 7072007446001950338, guid: 0c042d90f44f5904aa1f7d2ef7bb6f98, type: 3}
   playerObject: {fileID: 789128661}
   playerPlatformSpawnDist: 0
   platformDist: 0
