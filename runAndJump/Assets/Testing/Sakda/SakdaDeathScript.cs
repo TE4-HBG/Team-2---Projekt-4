@@ -12,7 +12,7 @@ public class SakdaDeathScript : MonoBehaviour
     public Text RestartText;
     public Button Restartknapp;
     public GameObject player;
-    public Text ScoreCounter;
+    public Text ScoreDisplay;
 
     void Start()
     {
@@ -36,7 +36,7 @@ public class SakdaDeathScript : MonoBehaviour
     public void GameOver(string deathState)
     {
         Pause();
-        ScoreCounter.fontSize  = 50;
+        ScoreDisplay.fontSize  = 50;
         GameoverText.text = "GAME OVER" + "     " + deathState; // Visa highscore
         RestartText.color = new Color(0, 0, 0, 255);
         Restartknapp.image.enabled = true;
