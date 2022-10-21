@@ -51,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Allows the player to jump higher
-        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
+        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f || Input.GetButtonUp("Jump") && rb.velocity.y < 0f)
         {
             rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y * 0.5f);
         }
