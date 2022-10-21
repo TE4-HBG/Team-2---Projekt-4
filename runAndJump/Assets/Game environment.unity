@@ -992,10 +992,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreCounter: {fileID: 789128670}
-  platformPrefab: {fileID: 7285101660226760978, guid: 06c3b9eff96075f4186fd30edcd029f0, type: 3}
-  platformTwoPrefab: {fileID: 1991269669345320430, guid: 702b74433763fc447b74dd371dfdff01, type: 3}
-  platformThreePrefab: {fileID: 3476363864201159133, guid: 21ee1841219313846b1822eba4db7d8e, type: 3}
-  platformFourPrefab: {fileID: 7072007446001950338, guid: 0c042d90f44f5904aa1f7d2ef7bb6f98, type: 3}
+  platformPrefab: {fileID: 274508012709578195, guid: dddc625928bb1b549b5f48bb90c62a9f, type: 3}
+  platformTwoPrefab: {fileID: 2064952253491966007, guid: c1f29992c7c356f4093a23904fe880d8, type: 3}
+  platformThreePrefab: {fileID: 144866178391647505, guid: e527ae3b637ff8e4b865eb2def46e4bf, type: 3}
+  platformFourPrefab: {fileID: 97814513360609827, guid: 6a1f87b71dca89f459aa362268e7f88e, type: 3}
   playerObject: {fileID: 789128661}
   playerPlatformSpawnDist: 0
   platformDist: 0
