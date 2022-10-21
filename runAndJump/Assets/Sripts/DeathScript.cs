@@ -18,13 +18,21 @@ public class DeathScript : MonoBehaviour
     {
     }
 
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.R))
+        {
+            Restart();
+        }
+
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject == Deathfloor)
         {
             Debug.Log("game over you fell out");
             GameOver("You fell out");
-
         }
         else if (collision.gameObject == Chaser)
         {
@@ -44,6 +52,8 @@ public class DeathScript : MonoBehaviour
         color.normalColor = new Color(255, 255, 255, 255);
         color.highlightedColor = new Color(255, 255, 255, 255);
         Restartknapp.colors = color;
+
+
     }
 
     public void RestartKnapp()
