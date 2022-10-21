@@ -207,9 +207,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
-        m_TargetAssemblyTypeName: DeathScript, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 789128671}
+        m_TargetAssemblyTypeName: SakdaDeathScript, Assembly-CSharp
+        m_MethodName: RestartKnapp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
