@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class Kayvan : MonoBehaviour
+public class CatchUp : MonoBehaviour
 {
     public GameObject player;
     private Vector3 playerPos;
@@ -20,7 +21,7 @@ public class Kayvan : MonoBehaviour
 
         if (playerPos.x >= 2.5)
         {
-            transform.position = Vector3.MoveTowards(transform.position, playerPos, kayvanSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, playerPos, kayvanSpeed * Time.deltaTime); 
         }
 
         if (playerPos.x - 250f >= kayvanPos.x)

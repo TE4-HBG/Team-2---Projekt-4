@@ -12,11 +12,19 @@ public class DeathScript : MonoBehaviour
     public Text RestartText;
     public Button Restartknapp;
     public GameObject player;
-
-
+    public Text ScoreDisplay;
 
     void Start()
     {
+    }
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.R))
+        {
+            Restart();
+        }
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -25,7 +33,6 @@ public class DeathScript : MonoBehaviour
         {
             Debug.Log("game over you fell out");
             GameOver("You fell out");
-
         }
         else if (collision.gameObject == Chaser)
         {
@@ -37,6 +44,7 @@ public class DeathScript : MonoBehaviour
     public void GameOver(string deathState)
     {
         Pause();
+        ScoreDisplay.fontSize = 50;
         GameoverText.text = "GAME OVER" + "     " + deathState; // Visa highscore
         RestartText.color = new Color(0, 0, 0, 255);
         Restartknapp.image.enabled = true;
@@ -44,6 +52,8 @@ public class DeathScript : MonoBehaviour
         color.normalColor = new Color(255, 255, 255, 255);
         color.highlightedColor = new Color(255, 255, 255, 255);
         Restartknapp.colors = color;
+
+
     }
 
     public void RestartKnapp()

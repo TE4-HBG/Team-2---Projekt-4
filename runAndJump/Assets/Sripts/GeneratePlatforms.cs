@@ -28,7 +28,7 @@ public class GeneratePlatforms : MonoBehaviour
         playerPlatformSpawnDist = 20;
         platformDist = 10;
         randStartValue = -3;
-        randEndValue = randStartValue + 6;
+        randEndValue = randStartValue + 3;
         minPlatformSpawnY = -3;
         platformDistDiff = 12;
 
@@ -38,7 +38,7 @@ public class GeneratePlatforms : MonoBehaviour
             latestPlatform = Instantiate(platformToSpawn, new Vector3(platformDist, randValueY), Quaternion.identity);
             platformDist += platformDistDiff;
             randStartValue = (int)latestPlatform.transform.position.y;
-            randEndValue = randStartValue + 6;
+            randEndValue = randStartValue + 3;
         }
     }
 
@@ -56,7 +56,7 @@ public class GeneratePlatforms : MonoBehaviour
         }
         else if (scoreCounter.score > 802)
         {
-            platformDistDiff = 17;
+            platformDistDiff = 15;
             platformToSpawn = platformFourPrefab;
         }
 
