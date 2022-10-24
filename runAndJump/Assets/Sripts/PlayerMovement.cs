@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private float horizontal;
     private float speed = 16f;
-    private float jumpingPower = 10f;
+    public float jumpingPower = 10f;
     private float doubleJumpingPower = 8f;
 
     private bool doubleJump;
@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
             speed = 8f;
         }
         */
-
+        
         //Reactivate double jump
         if (IsGrounded() /*&& !Input.GetButtonDonw("Jump")*/)
         {
@@ -42,15 +42,12 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             //The player is grounded or doubleJump is true
-            if (IsGrounded())
+            if (IsGrounded() || doubleJump)
             {
-                rb.velocity = new Vector3(rb.velocity.x, jumpingPower);
-            }
-            else if (doubleJump)
-            {
-                rb.velocity = new Vector3(rb.velocity.x, doubleJumpingPower);
+                rb.velocity = new Vector3(rb.velocity.x, doubleJump ? doubleJumpingPower : jumpingPower);
+
                 doubleJump = !doubleJump;
-            }
+            }     
         }
 
         //Allows the player to jump higher
@@ -69,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool IsGrounded()
     {
-        return Physics.CheckSphere(groundCheck.position, 0.4f, groundLayer);
+        return Physics.CheckSphere(groundCheck.position, 0.2f, groundLayer);
         //Checks if the player has touched the ground
     }
 }
