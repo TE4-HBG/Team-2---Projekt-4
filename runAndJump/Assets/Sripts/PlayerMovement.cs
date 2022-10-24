@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class IsaacPlayerMovement : MonoBehaviour
 {
     private float horizontal;
     private float speed = 16f;
@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
             speed = 8f;
         }
         */
-        
+
         //Reactivate double jump
         if (IsGrounded() /*&& !Input.GetButtonDonw("Jump")*/)
         {
@@ -42,12 +42,15 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             //The player is grounded or doubleJump is true
-            if (IsGrounded() || doubleJump)
+            if (IsGrounded())
             {
-                rb.velocity = new Vector3(rb.velocity.x, doubleJump ? doubleJumpingPower : jumpingPower);
-
+                rb.velocity = new Vector3(rb.velocity.x, jumpingPower);
+            }
+            else if (doubleJump)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, doubleJumpingPower);
                 doubleJump = !doubleJump;
-            }     
+            }
         }
 
         //Allows the player to jump higher
@@ -66,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool IsGrounded()
     {
-        return Physics.CheckSphere(groundCheck.position, 0.2f, groundLayer);
+        return Physics.CheckSphere(groundCheck.position, 0.4f, groundLayer);
         //Checks if the player has touched the ground
     }
 }
