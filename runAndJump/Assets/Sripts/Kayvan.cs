@@ -18,7 +18,7 @@ public class Kayvan : MonoBehaviour
         playerPos = new Vector3(player.transform.position.x, player.transform.position.y);
         kayvanPos = new Vector3(kayvan.transform.position.x, player.transform.position.y);
 
-        if (playerPos.x >= 2.5)
+        if (playerPos.x >= 10)
         {
             transform.position = Vector3.MoveTowards(transform.position, playerPos, kayvanSpeed * Time.deltaTime);
         }

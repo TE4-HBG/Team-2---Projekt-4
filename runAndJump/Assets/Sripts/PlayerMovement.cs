@@ -6,15 +6,28 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private float horizontal;
-    private float speed = 16f;
+
+    private float lastHorizontal;
+
+    private float topSpeed = 16f;
+    private float acceleration = 19f;
+    private float deceleration = 24f;
+    //private float brake = 30f;
     private float jumpingPower = 10f;
     private float doubleJumpingPower = 8f;
+
+    private float Velocity;
 
     private bool doubleJump;
 
     [SerializeField] public Rigidbody rb;
     [SerializeField] public Transform groundCheck;
     [SerializeField] public LayerMask groundLayer;
+
+    private void Start()
+    {
+        Velocity = 0f;
+    }
 
     void Update()
     {
@@ -64,7 +77,24 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         //Our movement, horizontal represents direction with -1, 0, 1. Translated means a idle and d
-        rb.velocity = new Vector3(horizontal * speed, rb.velocity.y);
+        if (horizontal != 0)
+        {
+            if (lastHorizontal != horizontal)
+            {
+                Velocity = 0;
+            }
+
+            rb.velocity = new Vector3(horizontal * Velocity, rb.velocity.y);
+
+
+            lastHorizontal = horizontal;
+        }
+        else
+        {
+            rb.velocity = new Vector3(lastHorizontal * Velocity, rb.velocity.y);
+        }
+
+        LimitSpeed();
     }
 
     private bool IsGrounded()
@@ -72,4 +102,29 @@ public class PlayerMovement : MonoBehaviour
         return Physics.CheckSphere(groundCheck.position, 0.4f, groundLayer);
         //Checks if the player has touched the ground
     }
+
+    void LimitSpeed()
+    {
+        if (horizontal == 1)
+        {
+            Velocity += acceleration * Time.deltaTime;
+            Velocity = Mathf.Min(Velocity, topSpeed);
+        }
+        else if (horizontal == -1)
+        {
+            Velocity += acceleration * Time.deltaTime;
+            Velocity = Mathf.Min(Velocity, topSpeed);
+        }
+        else
+        {
+            Velocity -= deceleration * Time.deltaTime;
+            Velocity = Mathf.Clamp(Velocity, 0f, topSpeed);
+        }
+    }
+
+    /*void Brake()
+    {
+        Velocity -= brake * Time.deltaTime;
+        Velocity = Mathf.Clamp(Velocity, 0f, topSpeed);
+    }*/
 }
