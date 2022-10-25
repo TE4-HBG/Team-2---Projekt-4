@@ -29,6 +29,6 @@ public class SpeedPlatform : MonoBehaviour
         currentTimer = 0;
         currentTimer = timer;
         
-        playerMovement.speed = 50f;
+        playerMovement.speed = 30f;
     }
 }
