@@ -11,23 +11,24 @@ public class ScoreCounter : MonoBehaviour
 
     void Start()
     {
-        
+
         score = startingScore;
-        locationX = score;
     }
 
     void Update()
     {
-        
+
         locationX = Mathf.RoundToInt(transform.position.x);
-        if (locationX <= 0) {
-            score = 0 + CoinScript.coinScore;
-        }
-        else
+        if (locationX > score)
         {
             score = locationX;
+            displayScore = score * 100;
+        }
+        else if (locationX <= score)
+        {
             displayScore = score * 100 + CoinScript.coinScore;
         }
 
     }
 }
+
