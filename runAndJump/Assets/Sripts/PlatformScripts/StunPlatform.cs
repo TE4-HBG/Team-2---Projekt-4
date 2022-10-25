@@ -37,8 +37,7 @@ public class StunPlatform : MonoBehaviour
             playerMovementScript.speed = 16f;
             playerMovementScript.jumpingPower = 10f;
         }
-        
-       
+
     }
     private void OnCollisionEnter(Collision collision)
     {
