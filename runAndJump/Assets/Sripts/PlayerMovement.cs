@@ -6,18 +6,36 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private float horizontal;
-    private float speed = 16f;
+    public float speed = 16f;
     public float jumpingPower = 10f;
     private float doubleJumpingPower = 8f;
+    //public int timer;
+    //int currentTimer;
 
     private bool doubleJump;
 
     [SerializeField] public Rigidbody rb;
     [SerializeField] public Transform groundCheck;
     [SerializeField] public LayerMask groundLayer;
+    SpeedPlatform speedPlatformScript;
+    GameObject speedPlatform;
 
+    private void Start()
+    {
+        speedPlatform = GameObject.Find("SpeedPlatform"); //SpeedPlatform(clone) will be used outside of testing
+        speedPlatformScript = speedPlatform.GetComponent<SpeedPlatform>(); 
+    }
     void Update()
     {
+        speedPlatformScript.timer++;
+        if(speed == 50)
+        {
+            if (speedPlatformScript.timer > speedPlatformScript.currentTimer + 600)
+            {
+                speed = 16;
+            }
+        }
+        
         //Obtains the value of either -1, 0 or 1
         horizontal = Input.GetAxisRaw("Horizontal");
 

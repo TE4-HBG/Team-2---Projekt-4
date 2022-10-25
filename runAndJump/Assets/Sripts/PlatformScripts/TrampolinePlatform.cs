@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
 
 public class TrampolinePlatform : MonoBehaviour
 {
-    public GameObject player;
-    public Rigidbody rb;
+    private GameObject player;
+    private Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("CoffeeMug");
         rb = player.GetComponent<Rigidbody>();
     }
 
