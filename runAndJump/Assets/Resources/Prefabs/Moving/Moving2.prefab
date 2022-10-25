@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 8224564378913716165}
   - component: {fileID: 455653908635274842}
   - component: {fileID: 122218749315710052}
+  - component: {fileID: 2120154053408821400}
   m_Layer: 6
-  m_Name: floatin-platform
+  m_Name: Moving2
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,6 +106,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2120154053408821400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144866178391647505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec0708c1b826e4b43bc056e08a98e3dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &382701894533884452
 GameObject:
   m_ObjectHideFlags: 0

@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 6754113310771085532}
   - component: {fileID: 1720230214118394676}
   m_Layer: 6
-  m_Name: rocky-platform
+  m_Name: Basic1
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

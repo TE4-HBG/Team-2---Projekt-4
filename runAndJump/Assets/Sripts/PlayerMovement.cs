@@ -26,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
     SpeedPlatform speedPlatformScript;
     GameObject speedPlatform;
 
+
+
     private void Start()
     {
         Velocity = 0f;
