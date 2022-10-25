@@ -6,17 +6,19 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private float horizontal;
-
     private float lastHorizontal;
 
-    public float topSpeed = 16f;
-    private float acceleration = 19f;
+    public float topSpeed; // Set on CoffeeMug
+    public float boostedTopSpeed; // Set on CoffeeMug
+    private float acceleration = 36f;
     private float deceleration = 24f;
+    private float decelerationTurn = 38f;
     //private float brake = 30f;
-    public float jumpingPower = 10f;
-    public float doubleJumpingPower = 8f;
+    public float jumpingPower; // Set on CoffeeMug
+    public float doubleJumpingPower; // Set on CoffeeMug
 
     private float Velocity;
+
 
     private bool doubleJump;
 
@@ -26,19 +28,11 @@ public class PlayerMovement : MonoBehaviour
     SpeedPlatform speedPlatformScript;
     GameObject speedPlatform;
 
-    private void Start()
-    {
-        Velocity = 0f;
-        speedPlatform = GameObject.Find("SpeedPlatform"); //SpeedPlatform(clone) will be used outside of testing
-        speedPlatformScript = speedPlatform.GetComponent<SpeedPlatform>();
-    }
-
     void Update()
     {
-       
+
         //Obtains the value of either -1, 0 or 1
         horizontal = Input.GetAxisRaw("Horizontal");
-
 
         //Sprint
         /*
@@ -51,6 +45,14 @@ public class PlayerMovement : MonoBehaviour
             speed = 8f;
         }
         */
+
+
+        Debug.Log(rb.velocity.x);
+        rb.AddForce(0f, -3f, 0f); // Increase gravity / fallSpeed
+
+        //Obtains the value of either -1, 0 or 1
+        horizontal = Input.GetAxisRaw("Horizontal");
+
 
         //Reactivate double jump
         if (IsGrounded() /*&& !Input.GetButtonDonw("Jump")*/)
@@ -72,18 +74,19 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        /*
         //Allows the player to jump higher
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
-            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y * 0.5f);
+          rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y * 1f);
         }
+        */
 
-
-        if (topSpeed == 30)
+        if (topSpeed == boostedTopSpeed)
         {
             if (speedPlatformScript.timer > speedPlatformScript.currentTimer + 600)
             {
-                topSpeed = 16;
+                topSpeed = 10f; // Return to normal topSpeed, should'nt be hardcoded :/
             }
         }
         speedPlatformScript.timer++;
@@ -92,49 +95,57 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         //Our movement, horizontal represents direction with -1, 0, 1. Translated means a idle and d
-        if (horizontal != 0)
+        if (horizontal != 0) // If holding down A or D
         {
-            if (lastHorizontal != horizontal)
+            if (horizontal == 1) // Holding down D
             {
-                Velocity = 0;
+                if (rb.velocity.x < 0) // If moving to the left
+                {
+                    Velocity = rb.velocity.x + (decelerationTurn * Time.deltaTime);
+                }
+                else
+                {
+                    Velocity += acceleration * Time.deltaTime;
+                    Velocity = Mathf.Min(Velocity, topSpeed);
+                }
+                rb.velocity = new Vector3(Velocity, rb.velocity.y);
             }
-
-            rb.velocity = new Vector3(horizontal * Velocity, rb.velocity.y);
-
-
+            else if (horizontal == -1) // Holding down A
+            {
+                if (rb.velocity.x > 0) // If moving to the right
+                {
+                    Velocity = rb.velocity.x - (decelerationTurn * Time.deltaTime);
+                    rb.velocity = new Vector3(Velocity, rb.velocity.y);
+                }
+                else
+                {
+                    Velocity += acceleration * Time.deltaTime;
+                    Velocity = Mathf.Min(Velocity, topSpeed);
+                    rb.velocity = new Vector3(horizontal * Velocity, rb.velocity.y);
+                } 
+            }
+            
             lastHorizontal = horizontal;
         }
         else
         {
-            rb.velocity = new Vector3(lastHorizontal * Velocity, rb.velocity.y);
+            if (rb.velocity.x == 0)
+            {
+                Velocity = 0;
+            }
+            else
+            {
+                Velocity -= deceleration * Time.deltaTime;
+                Velocity = Mathf.Clamp(Velocity, 0f, topSpeed);
+                rb.velocity = new Vector3(lastHorizontal * Velocity, rb.velocity.y);
+            }
         }
-
-        LimitSpeed();
     }
 
     private bool IsGrounded()
     {
         return Physics.CheckSphere(groundCheck.position, 0.4f, groundLayer);
         //Checks if the player has touched the ground
-    }
-
-    void LimitSpeed()
-    {
-        if (horizontal == 1)
-        {
-            Velocity += acceleration * Time.deltaTime;
-            Velocity = Mathf.Min(Velocity, topSpeed);
-        }
-        else if (horizontal == -1)
-        {
-            Velocity += acceleration * Time.deltaTime;
-            Velocity = Mathf.Min(Velocity, topSpeed);
-        }
-        else
-        {
-            Velocity -= deceleration * Time.deltaTime;
-            Velocity = Mathf.Clamp(Velocity, 0f, topSpeed);
-        }
     }
 
     /*void Brake()
