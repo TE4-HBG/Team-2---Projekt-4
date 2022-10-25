@@ -9,12 +9,12 @@ public class PlayerMovement : MonoBehaviour
 
     private float lastHorizontal;
 
-    private float topSpeed = 16f;
+    public float topSpeed = 16f;
     private float acceleration = 19f;
     private float deceleration = 24f;
     //private float brake = 30f;
-    private float jumpingPower = 10f;
-    private float doubleJumpingPower = 8f;
+    public float jumpingPower = 10f;
+    public float doubleJumpingPower = 8f;
 
     private float Velocity;
 
@@ -23,16 +23,22 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public Rigidbody rb;
     [SerializeField] public Transform groundCheck;
     [SerializeField] public LayerMask groundLayer;
+    SpeedPlatform speedPlatformScript;
+    GameObject speedPlatform;
 
     private void Start()
     {
         Velocity = 0f;
+        speedPlatform = GameObject.Find("SpeedPlatform"); //SpeedPlatform(clone) will be used outside of testing
+        speedPlatformScript = speedPlatform.GetComponent<SpeedPlatform>();
     }
 
     void Update()
     {
+       
         //Obtains the value of either -1, 0 or 1
         horizontal = Input.GetAxisRaw("Horizontal");
+
 
         //Sprint
         /*
@@ -72,6 +78,15 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y * 0.5f);
         }
 
+
+        if (topSpeed == 30)
+        {
+            if (speedPlatformScript.timer > speedPlatformScript.currentTimer + 600)
+            {
+                topSpeed = 16;
+            }
+        }
+        speedPlatformScript.timer++;
     }
 
     private void FixedUpdate()

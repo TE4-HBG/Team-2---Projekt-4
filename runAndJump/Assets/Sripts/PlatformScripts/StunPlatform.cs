@@ -27,14 +27,14 @@ public class StunPlatform : MonoBehaviour
         timer++;
         if (currentTimer + 600 >= timer && isTouched)
         {
-            playerMovementScript.speed = 0f;
+            playerMovementScript.topSpeed = 0f;
             playerMovementScript.jumpingPower = 0f;
         }
         else if (currentTimer + 600 < timer && isTouched)
         {
             rb.velocity = new Vector3(rb.velocity.x, 20);
             isTouched = false;
-            playerMovementScript.speed = 16f;
+            playerMovementScript.topSpeed = 16f;
             playerMovementScript.jumpingPower = 10f;
         }
 
