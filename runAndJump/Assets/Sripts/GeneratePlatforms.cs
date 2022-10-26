@@ -9,18 +9,9 @@ public class GeneratePlatforms : MonoBehaviour
     public GameObject platformTwoPrefab;
     public GameObject platformThreePrefab;
     public GameObject platformFourPrefab;
-    public GameObject platformFivePrefab;
-
-    public GameObject fallingPlatformPrefab;
-    public GameObject movingPlatformPrefab;
-    public GameObject speedPlatformPrefab;
-    public GameObject stunPlatformPrefab;
-    public GameObject trampolinePlatformPrefab;
-
     private GameObject platformToSpawn;
     public GameObject playerObject;
     private GameObject latestPlatform;
-
     public int playerPlatformSpawnDist;
     public int platformDist;
     public int randValueY;
@@ -28,7 +19,6 @@ public class GeneratePlatforms : MonoBehaviour
     public int randEndValue;
     public int minPlatformSpawnY;
     public int platformDistDiff;
-    public int randValueForPlatforms;
     
 
     // Start is called before the first frame update
@@ -61,24 +51,13 @@ public class GeneratePlatforms : MonoBehaviour
         }
         else if (scoreCounter.score > 401 && scoreCounter.score < 802)
         {
-            randValueForPlatforms = Random.Range(0, 10);
-            if (randValueForPlatforms == 0)
-            {
-                platformToSpawn = movingPlatformPrefab;
-            }
-            else
-            platformToSpawn = platformThreePrefab;
-
             platformDistDiff = 15;
+            platformToSpawn = platformThreePrefab;
         }
-        else if (scoreCounter.score > 802 && scoreCounter.score < 1003)
+        else if (scoreCounter.score > 802)
         {
+            platformDistDiff = 15;
             platformToSpawn = platformFourPrefab;
-        }
-        else if (scoreCounter.score > 1003)
-        {
-            platformDistDiff = 18;
-            platformToSpawn = platformFivePrefab;
         }
 
         if (latestPlatform.transform.position.x - playerObject.transform.position.x < playerPlatformSpawnDist)
@@ -88,6 +67,7 @@ public class GeneratePlatforms : MonoBehaviour
                 randValueY = Random.Range(randStartValue, randEndValue);
             } 
             while (randValueY < minPlatformSpawnY);
+
 
             latestPlatform = Instantiate(platformToSpawn, new Vector3(platformDist, randValueY), Quaternion.identity);
             platformDist += platformDistDiff;
