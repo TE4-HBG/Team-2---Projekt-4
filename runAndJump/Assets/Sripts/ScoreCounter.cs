@@ -7,18 +7,21 @@ public class ScoreCounter : MonoBehaviour
     private float startingScore = 0;
     public float score;
     public float locationX;
-    public float displayScore;
+    public static float displayScore;
 
-    void Start()
+    private void OnEnable()
     {
-
         score = startingScore;
     }
-
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            score = 0f;
+        }
+        
         locationX = Mathf.RoundToInt(transform.position.x);
+
         if (locationX > score)
         {
             score = locationX;
@@ -29,6 +32,7 @@ public class ScoreCounter : MonoBehaviour
             displayScore = score * 100 + CoinScript.coinScore;
         }
 
+        
     }
 }
 

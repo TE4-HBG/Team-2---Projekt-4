@@ -10,6 +10,6 @@ public class ScoreDisplay : MonoBehaviour
 
     void Update()
     {
-        scoreDisplay.text = player.GetComponent<ScoreCounter>().displayScore.ToString();
+        scoreDisplay.text = ScoreCounter.displayScore.ToString();
     }
 }
