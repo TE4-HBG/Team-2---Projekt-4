@@ -73,6 +73,7 @@ public class DeathScript : MonoBehaviour
     {
         Time.timeScale = 1f;
         ScoreCounter.displayScore = 0f;
+        CoinScript.coinScore = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         
     }
