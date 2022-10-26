@@ -1462,7 +1462,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   locationX: 0
-  displayScore: 0
 --- !u!114 &1711306968
 MonoBehaviour:
   m_ObjectHideFlags: 0
