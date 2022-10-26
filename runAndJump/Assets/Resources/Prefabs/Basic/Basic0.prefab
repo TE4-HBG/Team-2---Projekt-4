@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 613878480865451881}
   - component: {fileID: 2994274197899055827}
-  - component: {fileID: 3036312727186663068}
+  - component: {fileID: 1886791571934916913}
   m_Layer: 6
   m_Name: Basic0
   m_TagString: Ground
@@ -80,7 +80,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3036312727186663068
+--- !u!65 &1886791571934916913
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

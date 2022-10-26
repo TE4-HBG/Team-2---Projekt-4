@@ -29,7 +29,7 @@ public class GeneratePlatformsTim : MonoBehaviour
     {
         platformArrays = new GameObject[6,5]; 
 
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 6; i++)
         {
             for (int j = 0; j < 5; j++)
             {
@@ -37,9 +37,14 @@ public class GeneratePlatformsTim : MonoBehaviour
                     platformArrays[i, j] = (GameObject)Resources.Load("Prefabs/Basic/Basic" + j, typeof(GameObject));
                 if (i == 1)
                     platformArrays[i, j] = (GameObject)Resources.Load("Prefabs/Moving/Moving" + j, typeof(GameObject));
-
-                //else if (i == 1)
-                //platformArrays[i, j] = (GameObject)Resources.Load("Prefabs/OriginalPlatforms/falling" + j, typeof(GameObject));
+                if (i == 2)
+                    platformArrays[i, j] = (GameObject)Resources.Load("Prefabs/Stun/Stun" + j, typeof(GameObject));
+                if (i == 3)
+                    platformArrays[i, j] = (GameObject)Resources.Load("Prefabs/Speed/Speed" + j, typeof(GameObject));
+                if (i == 4)
+                    platformArrays[i, j] = (GameObject)Resources.Load("Prefabs/Trampoline/Trampoline" + j, typeof(GameObject));
+                if (i == 5)
+                    platformArrays[i, j] = (GameObject)Resources.Load("Prefabs/Falling/Falling" + j, typeof(GameObject));
             }
         }
         
@@ -65,16 +70,47 @@ public class GeneratePlatformsTim : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (scoreCounter.score > 200 && scoreCounter.score < 401)
+        randValueForPlatforms = 3;
+        if (randValueForPlatforms == 0)
+        {
+            platformArrayIndex = 0;
+        }
+        else if (randValueForPlatforms == 1)
+        {
+            platformArrayIndex = 1;
+        }
+        else if (randValueForPlatforms == 2)
+        {
+            platformArrayIndex = 2;
+        }
+        else if (randValueForPlatforms == 3)
+        {
+            platformArrayIndex = 3;
+        }
+        else if (randValueForPlatforms == 4)
+        {
+            platformArrayIndex = 4;
+        }
+        else if (randValueForPlatforms == 5)
+        {
+            platformArrayIndex = 5;
+        }
+
+
+        if (scoreCounter.score <= 200)
+        {
+            platformIndex = 0;
+        }
+        else if (scoreCounter.score > 200 && scoreCounter.score <= 401)
         {
             platformIndex = 1;
         }
-        else if (scoreCounter.score > 401 && scoreCounter.score < 802)
+        else if (scoreCounter.score > 401 && scoreCounter.score <= 802)
         {
-            platformIndex = 2;
             platformDistDiff = 15;
+            platformIndex = 2;
         }
-        else if (scoreCounter.score > 802 && scoreCounter.score < 1003)
+        else if (scoreCounter.score > 802 && scoreCounter.score <= 1003)
         {
             platformIndex = 3;
         }
