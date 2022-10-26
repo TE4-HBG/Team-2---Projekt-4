@@ -2,22 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GeneratePlatforms : MonoBehaviour
+public class GeneratePlatformsTim : MonoBehaviour
 {
     public ScoreCounter scoreCounter;
-    public GameObject platformPrefab;
-    public GameObject platformTwoPrefab;
-    public GameObject platformThreePrefab;
-    public GameObject platformFourPrefab;
-    public GameObject platformFivePrefab;
 
-    public GameObject fallingPlatformPrefab;
-    public GameObject movingPlatformPrefab;
-    public GameObject speedPlatformPrefab;
-    public GameObject stunPlatformPrefab;
-    public GameObject trampolinePlatformPrefab;
+    public GameObject[,] platformArrays;
+    //public GameObject[] basicPlatforms;
 
-    private GameObject platformToSpawn;
+    private int platformArrayIndex;
+    private int platformIndex;
+
     public GameObject playerObject;
     private GameObject latestPlatform;
 
@@ -29,12 +23,28 @@ public class GeneratePlatforms : MonoBehaviour
     public int minPlatformSpawnY;
     public int platformDistDiff;
     public int randValueForPlatforms;
-    
 
     // Start is called before the first frame update
     void Start()
     {
-        platformToSpawn = platformPrefab;
+        platformArrays = new GameObject[6,5]; 
+
+        for (int i = 0; i < 2; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                if (i == 0)
+                    platformArrays[i, j] = (GameObject)Resources.Load("Prefabs/Basic/Basic" + j, typeof(GameObject));
+                if (i == 1)
+                    platformArrays[i, j] = (GameObject)Resources.Load("Prefabs/Moving/Moving" + j, typeof(GameObject));
+
+                //else if (i == 1)
+                //platformArrays[i, j] = (GameObject)Resources.Load("Prefabs/OriginalPlatforms/falling" + j, typeof(GameObject));
+            }
+        }
+        
+        platformIndex = 0;
+        platformArrayIndex = 0;
         playerPlatformSpawnDist = 20;
         platformDist = 10;
         randStartValue = -3;
@@ -45,7 +55,7 @@ public class GeneratePlatforms : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             randValueY = Random.Range(randStartValue, randEndValue);
-            latestPlatform = Instantiate(platformToSpawn, new Vector3(platformDist, randValueY), Quaternion.identity);
+            latestPlatform = Instantiate(platformArrays[platformArrayIndex, platformIndex], new Vector3(platformDist, randValueY), Quaternion.identity);
             platformDist += platformDistDiff;
             randStartValue = (int)latestPlatform.transform.position.y;
             randEndValue = randStartValue + 3;
@@ -57,28 +67,21 @@ public class GeneratePlatforms : MonoBehaviour
     {
         if (scoreCounter.score > 200 && scoreCounter.score < 401)
         {
-            platformToSpawn = platformTwoPrefab;
+            platformIndex = 1;
         }
         else if (scoreCounter.score > 401 && scoreCounter.score < 802)
         {
-            randValueForPlatforms = Random.Range(0, 10);
-            if (randValueForPlatforms == 0)
-            {
-                platformToSpawn = movingPlatformPrefab;
-            }
-            else
-            platformToSpawn = platformThreePrefab;
-
+            platformIndex = 2;
             platformDistDiff = 15;
         }
         else if (scoreCounter.score > 802 && scoreCounter.score < 1003)
         {
-            platformToSpawn = platformFourPrefab;
+            platformIndex = 3;
         }
         else if (scoreCounter.score > 1003)
         {
             platformDistDiff = 18;
-            platformToSpawn = platformFivePrefab;
+            platformIndex = 4;
         }
 
         if (latestPlatform.transform.position.x - playerObject.transform.position.x < playerPlatformSpawnDist)
@@ -89,7 +92,7 @@ public class GeneratePlatforms : MonoBehaviour
             } 
             while (randValueY < minPlatformSpawnY);
 
-            latestPlatform = Instantiate(platformToSpawn, new Vector3(platformDist, randValueY), Quaternion.identity);
+            latestPlatform = Instantiate(platformArrays[platformArrayIndex, platformIndex], new Vector3(platformDist, randValueY), Quaternion.identity);
             platformDist += platformDistDiff;
             randStartValue = (int)latestPlatform.transform.position.y -3;
             randEndValue = randStartValue + 6;
