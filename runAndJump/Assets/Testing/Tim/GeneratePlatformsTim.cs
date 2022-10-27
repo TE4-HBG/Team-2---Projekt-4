@@ -138,7 +138,7 @@ public class GeneratePlatformsTim : MonoBehaviour
             randStartValue = (int)latestPlatform.transform.position.y -3;
             randEndValue = randStartValue + 6;
 
-            coinSpawnChance = 0;
+            coinSpawnChance = Random.Range(0, 10);
             if (coinSpawnChance == 0)
             {
                 if (platformArrayIndex != 1)
