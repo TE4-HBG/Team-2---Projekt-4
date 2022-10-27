@@ -14,9 +14,9 @@ public class CoinScript : MonoBehaviour
 
     
 
-    public void OnCollisionEnter(Collision collision)
+    public void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.name == "Coin")
+        if (collision.gameObject.name == "Coin(Clone)")
         {
             Destroy(collision.gameObject);
             coinScore += 200;
@@ -26,9 +26,6 @@ public class CoinScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            coinScore = 0;
-        }
+
     }
 }
