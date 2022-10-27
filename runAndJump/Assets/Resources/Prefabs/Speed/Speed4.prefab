@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 6671991240220640179}
   - component: {fileID: 1608971239888876815}
   - component: {fileID: 501684689235906535}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Speed4
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -227,8 +227,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5103779, y: 0.49778557, z: 1}
+  m_Center: {x: 0.016193867, y: -0.25110722, z: 0}
 --- !u!65 &501684689235906535
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -240,5 +240,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.49974465, y: 0.5028572, z: 1}
+  m_Center: {x: 0.011488557, y: -0.2485714, z: 0}

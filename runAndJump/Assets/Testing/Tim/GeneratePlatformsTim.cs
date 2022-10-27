@@ -70,8 +70,8 @@ public class GeneratePlatformsTim : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        randValueForPlatforms = 3;
-        if (randValueForPlatforms == 0)
+        randValueForPlatforms = Random.Range(0, 16);
+        if (randValueForPlatforms )
         {
             platformArrayIndex = 0;
         }

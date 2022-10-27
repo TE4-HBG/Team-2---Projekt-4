@@ -25,14 +25,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 130742092992536689}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -0, y: 0, z: -0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9122065526742867897}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &5452041761800785672
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 7628523036059104112}
   - component: {fileID: 2762340165709900040}
   - component: {fileID: 4836711280600005672}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Speed1
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -214,8 +214,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 4.046399, y: 0.4812312, z: 1}
+  m_Center: {x: 0.0053601265, y: -0.2593844, z: 0}
 --- !u!65 &2762340165709900040
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -227,8 +227,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 4.056306, y: 0.4808483, z: 1}
+  m_Center: {x: -0.0031056404, y: -0.25957584, z: 0}
 --- !u!114 &4836711280600005672
 MonoBehaviour:
   m_ObjectHideFlags: 0
