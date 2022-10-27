@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public float boostedTopSpeed; // Set on CoffeeMug
     private float acceleration = 36f;
     private float deceleration = 24f;
-    private float decelerationTurn = 38f;
+    private float decelerationTurn = 36f;
     //private float brake = 30f;
     public float jumpingPower; // Set on CoffeeMug
     public float doubleJumpingPower; // Set on CoffeeMug
@@ -27,6 +27,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public LayerMask groundLayer;
     SpeedPlatform speedPlatformScript;
     GameObject speedPlatform;
+
+    private void Start()
+    {
+        Velocity = 0f;
+        speedPlatform = GameObject.Find("SpeedPlatform"); //SpeedPlatform(clone) will be used outside of testing
+        speedPlatformScript = speedPlatform.GetComponent<SpeedPlatform>();
+    }
 
     void Update()
     {
@@ -119,10 +126,11 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else
                 {
-                    Velocity += acceleration * Time.deltaTime;
-                    Velocity = Mathf.Min(Velocity, topSpeed);
-                    rb.velocity = new Vector3(horizontal * Velocity, rb.velocity.y);
-                } 
+                    Velocity -= acceleration * Time.deltaTime;
+                    Velocity = Mathf.Max(Velocity, -1 * topSpeed);
+                    rb.velocity = new Vector3(Velocity, rb.velocity.y);
+                    
+                }
             }
             
             lastHorizontal = horizontal;
@@ -135,9 +143,19 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                Velocity -= deceleration * Time.deltaTime;
-                Velocity = Mathf.Clamp(Velocity, 0f, topSpeed);
-                rb.velocity = new Vector3(lastHorizontal * Velocity, rb.velocity.y);
+                if (rb.velocity.x > 0) // If moving right
+                {
+                    Velocity -= deceleration * Time.deltaTime;
+                    Velocity = Mathf.Clamp(Velocity, 0f, topSpeed);
+                    rb.velocity = new Vector3(Velocity, rb.velocity.y);
+                }
+                else // if moving left
+                {
+                    Velocity += deceleration * Time.deltaTime;
+                    Velocity = Mathf.Clamp(Velocity, -1 * topSpeed, 0f);
+                    rb.velocity = new Vector3(Velocity, rb.velocity.y);
+                }
+
             }
         }
     }
