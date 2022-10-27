@@ -7,14 +7,13 @@ public class BackgroundFollow : MonoBehaviour
     public GameObject player;
     public Transform target;
     private Vector3 playerPos;
-    public float backDistZ;
     public float backDistY;
 
     private float speed = 100f;
 
     void Update()
     {
-        playerPos = new Vector3(player.transform.position.x, backDistZ, backDistY);
+        playerPos = new Vector3(player.transform.position.x, backDistY, 0);
 
         transform.position = Vector3.MoveTowards(transform.position, playerPos, speed * Time.deltaTime);
 

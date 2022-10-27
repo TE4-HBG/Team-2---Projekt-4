@@ -24,8 +24,10 @@ public class PlayerMovement : MonoBehaviour
 
     private float Velocity;
 
-
     private bool doubleJump;
+
+    private float coyoteTime = 0.1f;
+    private float coyoteTimeCounter;
 
     [SerializeField] public Rigidbody rb;
     [SerializeField] public Transform groundCheck;
@@ -52,11 +54,16 @@ public class PlayerMovement : MonoBehaviour
         //Obtains the value of either -1, 0 or 1
         horizontal = Input.GetAxisRaw("Horizontal");
 
+        if (IsGrounded())
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+
         rb.AddForce(0f, -3f, 0f); // Increase gravity / fallSpeed
-
-        //Obtains the value of either -1, 0 or 1
-        horizontal = Input.GetAxisRaw("Horizontal");
-
 
         //Reactivate double jump
         if (IsGrounded() /*&& !Input.GetButtonDonw("Jump")*/)
@@ -67,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             //The player is grounded or doubleJump is true
-            if (IsGrounded())
+            if (coyoteTimeCounter > 0f)
             {
                 rb.velocity = new Vector3(rb.velocity.x, jumpingPower);
             }
