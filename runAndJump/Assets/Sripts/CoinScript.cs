@@ -19,7 +19,7 @@ public class CoinScript : MonoBehaviour
         if (collision.gameObject.name == "Coin(Clone)")
         {
             Destroy(collision.gameObject);
-            coinScore += 200;
+            coinScore += 1500;
         }
     }
 

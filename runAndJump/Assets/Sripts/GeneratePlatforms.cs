@@ -58,7 +58,7 @@ public class GeneratePlatforms : MonoBehaviour
         randStartValue = -3;
         randEndValue = randStartValue + 3;
         minPlatformSpawnY = -3;
-        platformDistDiff = 12;
+        platformDistDiff = 14;
 
         for (int i = 0; i < 3; i++)
         {
@@ -109,7 +109,6 @@ public class GeneratePlatforms : MonoBehaviour
         }
         else if (scoreCounter.score > 401 && scoreCounter.score <= 802)
         {
-            platformDistDiff = 15;
             platformIndex = 2;
         }
         else if (scoreCounter.score > 802 && scoreCounter.score <= 1003)

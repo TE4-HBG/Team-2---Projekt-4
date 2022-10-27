@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class ScoreCounter : MonoBehaviour
 {
@@ -14,25 +15,17 @@ public class ScoreCounter : MonoBehaviour
         score = startingScore;
     }
     void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            score = 0f;
-        }
-        
-        locationX = Mathf.RoundToInt(transform.position.x);
+    {  
+        locationX = Mathf.RoundToInt(transform.position.x - 5); // Spawnarea ends at x = 5
 
         if (locationX > score)
         {
             score = locationX;
-            displayScore = score * 100;
         }
-        else if (locationX <= score)
-        {
-            displayScore = score * 100 + CoinScript.coinScore;
-        }
+        displayScore = Convert.ToInt32(Math.Floor(score * 3.1415f * 5f + CoinScript.coinScore));
 
-        
+
+
     }
 }
 
