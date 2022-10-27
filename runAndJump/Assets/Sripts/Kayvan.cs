@@ -35,7 +35,7 @@ public class Kayvan : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.CompareTag("Ground"))
+        if (collision.CompareTag("Ground") || collision.CompareTag("Coin"))
         {
             Destroy(collision.gameObject);
         }

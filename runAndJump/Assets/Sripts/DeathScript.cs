@@ -69,10 +69,13 @@ public class DeathScript : MonoBehaviour
         Restart();
     }
 
-    void Restart()
+    public void Restart()
     {
         Time.timeScale = 1f;
+        ScoreCounter.displayScore = 0f;
+        CoinScript.coinScore = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        
     }
 
     void Pause()
