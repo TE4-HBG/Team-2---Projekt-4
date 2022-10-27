@@ -914,6 +914,12 @@ MonoBehaviour:
   platformTwoPrefab: {fileID: 2064952253491966007, guid: c1f29992c7c356f4093a23904fe880d8, type: 3}
   platformThreePrefab: {fileID: 144866178391647505, guid: e527ae3b637ff8e4b865eb2def46e4bf, type: 3}
   platformFourPrefab: {fileID: 97814513360609827, guid: 6a1f87b71dca89f459aa362268e7f88e, type: 3}
+  platformFivePrefab: {fileID: 0}
+  fallingPlatformPrefab: {fileID: 0}
+  movingPlatformPrefab: {fileID: 0}
+  speedPlatformPrefab: {fileID: 0}
+  stunPlatformPrefab: {fileID: 0}
+  trampolinePlatformPrefab: {fileID: 0}
   playerObject: {fileID: 1711306965}
   playerPlatformSpawnDist: 0
   platformDist: 0
@@ -922,6 +928,7 @@ MonoBehaviour:
   randEndValue: 0
   minPlatformSpawnY: 0
   platformDistDiff: 0
+  randValueForPlatforms: 0
 --- !u!65 &945254543
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1462,7 +1469,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   locationX: 0
-  displayScore: 0
 --- !u!114 &1711306968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1477,8 +1483,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topSpeed: 16
   boostedTopSpeed: 20
-  jumpingPower: 10
-  doubleJumpingPower: 8
+  jumpingPower: 11
+  doubleJumpingPower: 12
   rb: {fileID: 1711306970}
   groundCheck: {fileID: 1719803779}
   groundLayer:
