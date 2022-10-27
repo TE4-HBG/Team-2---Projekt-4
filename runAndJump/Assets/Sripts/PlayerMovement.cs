@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public float boostedTopSpeed; // Set on CoffeeMug
     private float acceleration = 36f;
     private float deceleration = 24f;
-    private float decelerationTurn = 36f;
+    private float decelerationTurn = 90f;
     //private float brake = 30f;
     public float jumpingPower; // Set on CoffeeMug
     public float doubleJumpingPower; // Set on CoffeeMug
