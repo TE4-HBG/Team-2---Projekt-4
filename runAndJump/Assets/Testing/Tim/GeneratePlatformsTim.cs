@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GeneratePlatformsTim : MonoBehaviour
@@ -14,6 +15,7 @@ public class GeneratePlatformsTim : MonoBehaviour
 
     public GameObject playerObject;
     private GameObject latestPlatform;
+    public GameObject coin;
 
     public int playerPlatformSpawnDist;
     public int platformDist;
@@ -23,13 +25,14 @@ public class GeneratePlatformsTim : MonoBehaviour
     public int minPlatformSpawnY;
     public int platformDistDiff;
     public int randValueForPlatforms;
+    public int coinSpawnChance;
 
     // Start is called before the first frame update
     void Start()
     {
-        platformArrays = new GameObject[6,5]; 
+        platformArrays = new GameObject[7,5]; 
 
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < 7; i++)
         {
             for (int j = 0; j < 5; j++)
             {
@@ -45,9 +48,12 @@ public class GeneratePlatformsTim : MonoBehaviour
                     platformArrays[i, j] = (GameObject)Resources.Load("Prefabs/Trampoline/Trampoline" + j, typeof(GameObject));
                 if (i == 5)
                     platformArrays[i, j] = (GameObject)Resources.Load("Prefabs/Falling/Falling" + j, typeof(GameObject));
+                if (i == 6)
+                    platformArrays[i, j] = (GameObject)Resources.Load("Prefabs/Coin/Coin" + j, typeof(GameObject));
             }
         }
-        
+        coin = (GameObject)Resources.Load("Prefabs/Coin", typeof(GameObject));
+
         platformIndex = 0;
         platformArrayIndex = 0;
         playerPlatformSpawnDist = 20;
@@ -70,7 +76,7 @@ public class GeneratePlatformsTim : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        randValueForPlatforms = Random.Range(0, 16);
+        randValueForPlatforms = Random.Range(0,16);
         if (randValueForPlatforms <  11)
         {
             platformArrayIndex = 0;
@@ -95,7 +101,6 @@ public class GeneratePlatformsTim : MonoBehaviour
         {
             platformArrayIndex = 5;
         }
-
 
         if (scoreCounter.score <= 200)
         {
@@ -132,6 +137,15 @@ public class GeneratePlatformsTim : MonoBehaviour
             platformDist += platformDistDiff;
             randStartValue = (int)latestPlatform.transform.position.y -3;
             randEndValue = randStartValue + 6;
+
+            coinSpawnChance = 0;
+            if (coinSpawnChance == 0)
+            {
+                if (platformArrayIndex != 1)
+                {
+                    Instantiate(coin, new Vector3(latestPlatform.transform.position.x, latestPlatform.transform.position.y + 2), Quaternion.Euler(90, 0, 0));
+                }
+            }
         }
     }
 }
