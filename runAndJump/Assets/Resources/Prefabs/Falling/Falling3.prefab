@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 2105126075105279154}
   - component: {fileID: 650525356779846679}
   - component: {fileID: 2480255114967003249}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Falling3
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -144,8 +144,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 11.016663}
+  m_Center: {x: 0, y: 0, z: 5.0083313}
 --- !u!65 &650525356779846679
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -157,8 +157,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 10.998872}
+  m_Center: {x: 0, y: 0, z: 4.999436}
 --- !u!54 &2480255114967003249
 Rigidbody:
   m_ObjectHideFlags: 0

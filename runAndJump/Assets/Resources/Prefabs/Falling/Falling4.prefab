@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7490283817227787664}
   - component: {fileID: 5016876819933968604}
   - component: {fileID: 8009132052960175043}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Falling4
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -77,8 +77,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.37736273, y: 0.47976875, z: 1}
+  m_Center: {x: 0.0009558201, y: -0.26011562, z: 0}
 --- !u!65 &8009132052960175043
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -90,8 +90,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.4089551, y: 0.47381592, z: 1}
+  m_Center: {x: -0.009331942, y: -0.26309204, z: 0}
 --- !u!1 &5921894129840279640
 GameObject:
   m_ObjectHideFlags: 0

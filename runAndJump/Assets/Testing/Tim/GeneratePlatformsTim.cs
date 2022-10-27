@@ -71,27 +71,27 @@ public class GeneratePlatformsTim : MonoBehaviour
     void Update()
     {
         randValueForPlatforms = Random.Range(0, 16);
-        if (randValueForPlatforms )
+        if (randValueForPlatforms <  11)
         {
             platformArrayIndex = 0;
         }
-        else if (randValueForPlatforms == 1)
+        else if (randValueForPlatforms == 11)
         {
             platformArrayIndex = 1;
         }
-        else if (randValueForPlatforms == 2)
+        else if (randValueForPlatforms == 12)
         {
             platformArrayIndex = 2;
         }
-        else if (randValueForPlatforms == 3)
+        else if (randValueForPlatforms == 13)
         {
             platformArrayIndex = 3;
         }
-        else if (randValueForPlatforms == 4)
+        else if (randValueForPlatforms == 14)
         {
             platformArrayIndex = 4;
         }
-        else if (randValueForPlatforms == 5)
+        else if (randValueForPlatforms == 15)
         {
             platformArrayIndex = 5;
         }

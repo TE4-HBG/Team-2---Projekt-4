@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 1919959071041552234}
   - component: {fileID: 3892022578289869078}
   - component: {fileID: 3915704865637735003}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Falling1
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -145,8 +145,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3.976406, y: 0.51398706, z: 1}
+  m_Center: {x: 0.034773827, y: -0.24300647, z: 0}
 --- !u!65 &3892022578289869078
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -158,8 +158,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3.9745426, y: 0.5203123, z: 1}
+  m_Center: {x: 0.017690659, y: -0.23984385, z: 0}
 --- !u!54 &3915704865637735003
 Rigidbody:
   m_ObjectHideFlags: 0

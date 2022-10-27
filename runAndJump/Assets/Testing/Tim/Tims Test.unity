@@ -889,7 +889,7 @@ GameObject:
   - component: {fileID: 945254545}
   - component: {fileID: 945254544}
   - component: {fileID: 945254543}
-  - component: {fileID: 945254542}
+  - component: {fileID: 945254547}
   m_Layer: 0
   m_Name: Platformspawn kub
   m_TagString: Untagged
@@ -897,31 +897,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &945254542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 945254541}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80bfc7f8c6bcfb642b40088e93fe61cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreCounter: {fileID: 1711306967}
-  platformPrefab: {fileID: 274508012709578195, guid: dddc625928bb1b549b5f48bb90c62a9f, type: 3}
-  platformTwoPrefab: {fileID: 2064952253491966007, guid: c1f29992c7c356f4093a23904fe880d8, type: 3}
-  platformThreePrefab: {fileID: 144866178391647505, guid: e527ae3b637ff8e4b865eb2def46e4bf, type: 3}
-  platformFourPrefab: {fileID: 97814513360609827, guid: 6a1f87b71dca89f459aa362268e7f88e, type: 3}
-  playerObject: {fileID: 1711306965}
-  playerPlatformSpawnDist: 0
-  platformDist: 0
-  randValueY: 0
-  randStartValue: 0
-  randEndValue: 0
-  minPlatformSpawnY: 0
-  platformDistDiff: 0
 --- !u!65 &945254543
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1000,6 +975,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+--- !u!114 &945254547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945254541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2ade5fcedd1c0b48bd2e74815284005, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreCounter: {fileID: 1711306967}
+  playerObject: {fileID: 1711306965}
+  playerPlatformSpawnDist: 0
+  platformDist: 0
+  randValueY: 0
+  randStartValue: 0
+  randEndValue: 0
+  minPlatformSpawnY: 0
+  platformDistDiff: 0
+  randValueForPlatforms: 0
 --- !u!1001 &951486699
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1461,7 +1458,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   locationX: 0
-  displayScore: 0
 --- !u!114 &1711306968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1475,6 +1471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   topSpeed: 16
+  boostedTopSpeed: 0
   jumpingPower: 10
   doubleJumpingPower: 8
   rb: {fileID: 1711306970}
