@@ -11,6 +11,11 @@ public class BackgroundFollow : MonoBehaviour
 
     private float speed = 100f;
 
+    private void Start()
+    {
+        transform.rotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
+    }
+
     void Update()
     {
         playerPos = new Vector3(player.transform.position.x, backDistY, 0);
