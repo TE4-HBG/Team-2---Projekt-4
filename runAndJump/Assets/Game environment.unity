@@ -380,6 +380,7 @@ MonoBehaviour:
   scoreDisplay: {fileID: 279653244}
   player: {fileID: 1711306965}
   playerScore: 0
+  rb: {fileID: 1711306970}
 --- !u!114 &279653244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1559,8 +1560,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   topSpeed: 16
-  jumpingPower: 11
-  doubleJumpingPower: 12
+  jumpingPower: 10
+  doubleJumpingPower: 11
   rb: {fileID: 1711306970}
   groundCheck: {fileID: 1719803779}
   groundLayer:
@@ -1683,7 +1684,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1795109481}
   m_LocalRotation: {x: 0.13052596, y: -0, z: -0, w: 0.99144495}
-  m_LocalPosition: {x: -2.6565387, y: 9.52, z: -29.9}
+  m_LocalPosition: {x: -2.6565387, y: 10.77, z: -34.57}
   m_LocalScale: {x: 1.2018363, y: 1.2018363, z: 1.2018363}
   m_ConstrainProportionsScale: 0
   m_Children:

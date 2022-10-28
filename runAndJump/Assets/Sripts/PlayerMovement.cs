@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
             coyoteTimeCounter -= Time.deltaTime;
         }
 
-        rb.AddForce(0f, -3f, 0f); // Increase gravity / fallSpeed
+        rb.AddForce(0f, -5f, 0f); // Increase gravity / fallSpeed
 
         //Reactivate double jump
         if (IsGrounded() /*&& !Input.GetButtonDonw("Jump")*/)

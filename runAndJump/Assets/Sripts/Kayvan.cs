@@ -25,11 +25,11 @@ public class Kayvan : MonoBehaviour
 
         if (playerPos.x - 250f >= kayvanPos.x)
         {
-            kayvanSpeed = 30f;
+            kayvanSpeed = 35f;
         }
         else
         {
-            kayvanSpeed = 12f;
+            kayvanSpeed = 14f;
         }
     }
 
