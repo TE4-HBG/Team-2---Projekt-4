@@ -18,7 +18,7 @@ public class Kayvan : MonoBehaviour
         playerPos = new Vector3(player.transform.position.x, player.transform.position.y);
         kayvanPos = new Vector3(kayvan.transform.position.x, player.transform.position.y);
 
-        if (playerPos.x >= 10)
+        if (playerPos.x >= 5)
         {
             transform.position = Vector3.MoveTowards(transform.position, playerPos, kayvanSpeed * Time.deltaTime);
         }
@@ -35,7 +35,7 @@ public class Kayvan : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.CompareTag("Ground"))
+        if (collision.CompareTag("Ground") || collision.CompareTag("Coin"))
         {
             Destroy(collision.gameObject);
         }

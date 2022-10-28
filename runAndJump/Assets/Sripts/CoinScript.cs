@@ -14,12 +14,12 @@ public class CoinScript : MonoBehaviour
 
     
 
-    public void OnCollisionEnter(Collision collision)
+    public void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.name == "Coin")
+        if (collision.gameObject.name == "Coin(Clone)")
         {
             Destroy(collision.gameObject);
-            coinScore += 200;
+            coinScore += 1500;
         }
     }
 
