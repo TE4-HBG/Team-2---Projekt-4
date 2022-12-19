@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
+using Color = UnityEngine.Color;
 
 public class DeathScript : MonoBehaviour
 {
@@ -14,16 +16,54 @@ public class DeathScript : MonoBehaviour
     public GameObject player;
     public Text ScoreDisplay;
 
-    void Start()
+    GameObject inputFieldGameObject;
+    TMP_InputField inputFieldComponent;
+    public string playerInput;
+    public bool stringAccepted;
+
+    void Start()    
     {
+        stringAccepted = false;
+        inputFieldGameObject = GameObject.Find("InputField");
+        inputFieldComponent = inputFieldGameObject.GetComponent<TMP_InputField>();
+        resetInputField();
     }
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.R))
+        if (Input.GetKey(KeyCode.R) && ScoreDisplay.fontSize == 50)
         {
             Restart();
         }
+        if (stringAccepted)
+            RemoveInputFieldAndUnpauseGame();
+
+    }
+
+    void resetInputField()
+    {
+        ColorBlock color = inputFieldComponent.colors;
+        color.normalColor = new Color(255, 255, 255, 1);
+        color.highlightedColor = new Color(255, 255, 255, 0);
+        inputFieldComponent.colors = color;
+        inputFieldComponent.image.enabled = false;
+    }
+    void getNameInput()
+    {
+        inputFieldComponent.onEndEdit.AddListener(AcceptStringInput);
+    }
+
+    public void AcceptStringInput(string userInput)
+    {
+        playerInput = userInput;
+        Debug.Log(playerInput);
+        stringAccepted = true;
+    }
+
+    void RemoveInputFieldAndUnpauseGame()
+    {
+        inputFieldComponent.onEndEdit.RemoveListener(AcceptStringInput);
+        inputFieldComponent.gameObject.SetActive(false);
 
     }
 
@@ -48,11 +88,19 @@ public class DeathScript : MonoBehaviour
         GameoverText.text = "GAME OVER" + "     " + deathState; // Visa highscore
         RestartText.color = new Color(0, 0, 0, 255);
         Restartknapp.image.enabled = true;
-        ColorBlock color = Restartknapp.colors;
-        color.normalColor = new Color(255, 255, 255, 255);
-        color.highlightedColor = new Color(255, 255, 255, 255);
-        Restartknapp.colors = color;
+        ColorBlock colorKnapp = Restartknapp.colors;
+        colorKnapp.normalColor = new Color(255, 255, 255, 255);
+        colorKnapp.highlightedColor = new Color(255, 255, 255, 255);
+        Restartknapp.colors = colorKnapp;
 
+
+        inputFieldComponent.image.enabled = true;
+        ColorBlock colorInput = inputFieldComponent.colors;
+        colorInput.normalColor = new Color(255, 255, 255, 255);
+        colorInput.highlightedColor = new Color(255, 255, 255, 255);
+        inputFieldComponent.colors = colorInput;
+
+        getNameInput();
 
     }
 
@@ -75,7 +123,8 @@ public class DeathScript : MonoBehaviour
         ScoreCounter.displayScore = 0f;
         CoinScript.coinScore = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        
+        resetInputField();
+
     }
 
     void Pause()
