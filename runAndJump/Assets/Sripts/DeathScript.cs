@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System.IO;
 using Color = UnityEngine.Color;
 
 public class DeathScript : MonoBehaviour
@@ -20,13 +21,19 @@ public class DeathScript : MonoBehaviour
     TMP_InputField inputFieldComponent;
     public string playerInput;
     public bool stringAccepted;
+    string filePath = Path.GetFullPath("highscore.txt");
+    string fileContents;
 
-    void Start()    
+    void Start()
     {
         stringAccepted = false;
         inputFieldGameObject = GameObject.Find("InputField");
         inputFieldComponent = inputFieldGameObject.GetComponent<TMP_InputField>();
-        resetInputField();
+        ResetInputField();
+
+        //Work on reading and writing to and from file
+        StreamReader reader = new StreamReader(filePath);
+        fileContents = reader.ReadToEnd();
     }
 
     private void Update()
@@ -40,7 +47,7 @@ public class DeathScript : MonoBehaviour
 
     }
 
-    void resetInputField()
+    void ResetInputField()
     {
         ColorBlock color = inputFieldComponent.colors;
         color.normalColor = new Color(255, 255, 255, 1);
@@ -48,7 +55,7 @@ public class DeathScript : MonoBehaviour
         inputFieldComponent.colors = color;
         inputFieldComponent.image.enabled = false;
     }
-    void getNameInput()
+    void GetNameInput()
     {
         inputFieldComponent.onEndEdit.AddListener(AcceptStringInput);
     }
@@ -100,7 +107,7 @@ public class DeathScript : MonoBehaviour
         colorInput.highlightedColor = new Color(255, 255, 255, 255);
         inputFieldComponent.colors = colorInput;
 
-        getNameInput();
+        GetNameInput();
 
     }
 
@@ -123,7 +130,7 @@ public class DeathScript : MonoBehaviour
         ScoreCounter.displayScore = 0f;
         CoinScript.coinScore = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        resetInputField();
+        ResetInputField();
 
     }
 
