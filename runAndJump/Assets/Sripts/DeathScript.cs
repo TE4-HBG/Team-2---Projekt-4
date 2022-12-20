@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using System.IO;
 using Color = UnityEngine.Color;
+using System;
 
 public class DeathScript : MonoBehaviour
 {
@@ -16,13 +17,16 @@ public class DeathScript : MonoBehaviour
     public Button Restartknapp;
     public GameObject player;
     public Text ScoreDisplay;
+    public Text HighscoreDisplay; 
 
     GameObject inputFieldGameObject;
     TMP_InputField inputFieldComponent;
     public string playerInput;
     public bool stringAccepted;
-    string filePath = Path.GetFullPath("highscore.txt");
-    string fileContents;
+    string filePath;
+    string[] fileContents;
+    string hsPlayer;
+    string hsScore;
 
     void Start()
     {
@@ -32,8 +36,11 @@ public class DeathScript : MonoBehaviour
         ResetInputField();
 
         //Work on reading and writing to and from file
-        StreamReader reader = new StreamReader(filePath);
-        fileContents = reader.ReadToEnd();
+        filePath = Path.GetFullPath("highscore.txt");
+        HandleStreamReader();
+        HighscoreDisplay.text = fileContents[0] + ": " + fileContents[1];
+
+
     }
 
     private void Update()
@@ -55,6 +62,31 @@ public class DeathScript : MonoBehaviour
         inputFieldComponent.colors = color;
         inputFieldComponent.image.enabled = false;
     }
+
+    void WriteToFileIfHighscore()
+    {
+        if (ScoreCounter.displayScore > float.Parse(hsScore))
+        using (StreamWriter writer = new StreamWriter(filePath))
+        {
+            writer.WriteLine(playerInput);
+            writer.WriteLine(ScoreCounter.displayScore);
+        }
+        
+    }
+
+    
+    void HandleStreamReader()
+    {
+        if (!File.Exists(filePath))
+        {
+            using (File.CreateText(filePath));
+        }
+        fileContents = File.ReadAllLines(filePath);
+        hsPlayer = fileContents[0];
+        hsScore = fileContents[1];
+        Debug.Log(fileContents[0] + fileContents[1]);
+    }
+
     void GetNameInput()
     {
         inputFieldComponent.onEndEdit.AddListener(AcceptStringInput);
@@ -126,6 +158,7 @@ public class DeathScript : MonoBehaviour
 
     public void Restart()
     {
+        WriteToFileIfHighscore();
         Time.timeScale = 1f;
         ScoreCounter.displayScore = 0f;
         CoinScript.coinScore = 0;
