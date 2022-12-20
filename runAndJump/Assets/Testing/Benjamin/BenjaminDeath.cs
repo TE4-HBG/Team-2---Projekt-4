@@ -39,8 +39,6 @@ public class BenjaminDeath : MonoBehaviour
         //Work on reading and writing to and from file
         filePath = Path.GetFullPath("highscore.txt");
         HandleStreamReader();
-        HighscoreDisplay.text = fileContents[0] + ": " + fileContents[1];
-
         GameIsPaused = false;
     }
 
@@ -58,12 +56,23 @@ public class BenjaminDeath : MonoBehaviour
 
     void WriteToFileIfHighscore()
     {
-        if (ScoreCounter.displayScore > float.Parse(hsScore))
+        try
+        {
+            if (ScoreCounter.displayScore > float.Parse(hsScore))
+                using (StreamWriter writer = new StreamWriter(filePath))
+                {
+                    writer.WriteLine(playerInput);
+                    writer.WriteLine(ScoreCounter.displayScore);
+                }
+        }
+        catch
+        {
             using (StreamWriter writer = new StreamWriter(filePath))
             {
                 writer.WriteLine(playerInput);
                 writer.WriteLine(ScoreCounter.displayScore);
             }
+        }
 
     }
 
@@ -73,10 +82,19 @@ public class BenjaminDeath : MonoBehaviour
         {
             using (File.CreateText(filePath));
         }
-        fileContents = File.ReadAllLines(filePath);
-        hsPlayer = fileContents[0];
-        hsScore = fileContents[1];
-        Debug.Log(fileContents[0] + fileContents[1]);
+        try
+        {
+            fileContents = File.ReadAllLines(filePath);
+            hsPlayer = fileContents[0];
+            hsScore = fileContents[1];
+            Debug.Log(fileContents[0] + fileContents[1]);
+            HighscoreDisplay.text = fileContents[0] + ": " + fileContents[1];
+        }
+        catch
+        {
+            Debug.Log("File empty, cannot read");
+        }
+       
     }
 
     void GetNameInput()
