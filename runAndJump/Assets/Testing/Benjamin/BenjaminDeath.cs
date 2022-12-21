@@ -95,7 +95,6 @@ public class BenjaminDeath : MonoBehaviour
     {
         inputFieldComponent.onEndEdit.RemoveListener(AcceptStringInput);
         inputFieldComponent.gameObject.SetActive(false);
-
     }
 
     private void OnCollisionEnter(Collision collision)
