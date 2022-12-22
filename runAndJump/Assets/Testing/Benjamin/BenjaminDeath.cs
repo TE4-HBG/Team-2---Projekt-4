@@ -46,6 +46,10 @@ public class BenjaminDeath : MonoBehaviour
 
     private void Update()
     {
+        if (2 < 1)
+        {
+            Restart();
+        }
         if (stringAccepted)
             RemoveInputFieldAndUnpauseGame();
 
