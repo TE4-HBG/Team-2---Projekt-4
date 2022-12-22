@@ -46,10 +46,6 @@ public class BenjaminDeath : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.R) && GameIsPaused == true)
-        {
-            Restart();
-        }
         if (stringAccepted)
             RemoveInputFieldAndUnpauseGame();
 
