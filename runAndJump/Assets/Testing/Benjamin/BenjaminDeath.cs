@@ -46,10 +46,6 @@ public class BenjaminDeath : MonoBehaviour
 
     private void Update()
     {
-        if (2 < 1)
-        {
-            Restart();
-        }
         if (stringAccepted)
             RemoveInputFieldAndUnpauseGame();
 
@@ -58,12 +54,24 @@ public class BenjaminDeath : MonoBehaviour
 
     void WriteToFileIfHighscore()
     {
-        if (ScoreCounter.displayScore > float.Parse(hsScore))
+        try
+        {
+            if (ScoreCounter.displayScore > float.Parse(hsScore))
+                using (StreamWriter writer = new StreamWriter(filePath))
+                {
+                    writer.WriteLine(playerInput);
+                    writer.WriteLine(ScoreCounter.displayScore);
+                }
+        }
+        catch
+        {
             using (StreamWriter writer = new StreamWriter(filePath))
             {
                 writer.WriteLine(playerInput);
                 writer.WriteLine(ScoreCounter.displayScore);
             }
+        }
+      
 
     }
 
