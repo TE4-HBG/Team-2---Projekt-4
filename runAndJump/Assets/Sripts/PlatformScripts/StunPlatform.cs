@@ -24,12 +24,12 @@ public class StunPlatform : MonoBehaviour
     void Update()
     {
         timer++;
-        if (currentTimer + 200 >= timer && isTouched)
+        if (currentTimer + 50 >= timer && isTouched)
         {
             playerMovementScript.topSpeed = 0f;
             playerMovementScript.jumpingPower = 0f;
         }
-        else if (currentTimer + 200 < timer && isTouched)
+        else if (currentTimer + 50 < timer && isTouched)
         {
             rb.velocity = new Vector3(rb.velocity.x, 20);
             isTouched = false;
